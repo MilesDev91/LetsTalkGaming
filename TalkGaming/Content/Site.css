@@ -1,11 +1,13 @@
-﻿/*
-    Color Scheme
-    #221d28 - dark background
-    #48c752 - green highlights
-    #faef27 - Text
-
-*/
-
+﻿
+/*----------Color Scheme---------*/
+:root {
+    --darker-bg: #221d28;
+    --dark-bg: #454545;
+    --text: #faef27;
+    --highlights: #48c752;
+    --border: #cbcbcb
+}
+/* ----------------------------- */
 
 body {
     font-family: fantasy, Arial, Helvetica, sans-serif !important;
@@ -14,13 +16,22 @@ body {
     background-size: cover;
 }
 
+#overrides a {
+    color: var(--text);
+}
+
+#overrides a:hover, a:focus {
+    color: var(--text);
+    text-decoration: underline solid var(--highlights);
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 0px !important;
     padding-right: 0px !important;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    background-color: #454545;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    background-color: var(--dark-bg);
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -45,30 +56,18 @@ a > img {
 
 /* ------------Navbar------------- */    
 #overrides .navbar-inverse {
-    background-color: #221d28;
+    background-color: var(--darker-bg);
     border-color: #080808;
-    border-bottom: 2px solid #48c752
-}
-
-#overrides .navbar-brand {
-    color: #faef27;
-}
-
-#overrides .navbar-brand:hover {
-    text-decoration: underline solid #48c752;
-}
-
-#overrides .navbar-inverse .navbar-nav > li > a {
-    color: #faef27;
-}
-
-#overrides .navbar-inverse .navbar-nav > li > a:hover {
-    text-decoration: underline solid #48c752;
+    border-bottom: 2px solid var(--highlights)
 }
 
 /* -------------Body-------------- */
 
 /* Banner */
+#banner {
+    border-bottom: 1px solid var(--border);
+}
+
 .main-banner .banner-sides{
     display: none;
 }
@@ -94,15 +93,84 @@ a > img {
         display: block;
         width: 100%;
         height: 200px;
-        background-color: #221d28;
+        background-color: var(--darker-bg);
     }
+}
+
+/* Home Page */
+
+.forum {
+    color: var(--text);
+    border: 1px solid var(--border);
+    text-align: center;
+    padding: 5px 0;
+}
+
+/* Forum Page */
+
+.forum-title {
+    color: var(--text);
+    text-align: center;
+}
+
+.newpost-button {
+    color: var(--text);
+    background-color: var(--highlights);
+    margin-bottom: 10px;
+}
+
+/* Post Page */
+
+.newpost-title {
+    color: var(--text);
+    padding: 0px 20px;
+}
+
+.form-group {
+    padding: 10px 20px;
+    color: var(--text);
+    font-size: 1.3em;
+}
+
+.form-group > span {
+    display: inline-block;
+}
+
+input[type=text] {
+    background-color: var(--darker-bg);
+    color: var(--text);
+    font-size: .6em;
+}
+
+#overrides textarea {
+    background-color: var(--darker-bg);
+    color: var(--text);
+    height: 120px;
+    resize: none;
+    font-size: .6em;
+}
+
+.field-validation-error, label.error {
+    color: red;
+    padding: 4px;
+}
+
+.input-validation-error, input.error {
+    border: 2px solid red;
+}
+
+.newpost-button-save {
+    color: var(--text);
+    background-color: var(--highlights);
+    margin-bottom: 10px;
+    margin-left: 20px;
 }
 
 /* -------------Footer------------ */
 #overrides footer {
-    background-color: #221d28;
-    border-top: 1px solid #48c752;
+    background-color: var(--darker-bg);
+    border-top: 1px solid var(--highlights);
     padding: 10px 20px;
-    color: #faef27;
+    color: var(--text);
     font-size: 1.1rem;
 }

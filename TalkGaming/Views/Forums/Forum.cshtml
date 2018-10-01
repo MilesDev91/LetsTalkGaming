@@ -1,0 +1,23 @@
+﻿@model TalkGaming.ViewModels.ForumViewModel
+@{
+    ViewBag.Title = "Forum";
+}
+
+<h2 class="forum-title">@Model.Title</h2>
+<div style="text-align: center">
+    <button class="newpost-button">@Html.ActionLink("New Post", "NewPost", "Posts", new { param1 = Model.Title } , null)</button>
+    @if (Model.Posts != null)
+    {
+        foreach(var post in Model.Posts)
+        { 
+            <div class="post">
+                <div class="post-title">
+                    @post.Title
+                </div>
+                <div class="post-content">
+                    @post.Content
+                </div>
+            </div>
+        }
+    }
+</div>

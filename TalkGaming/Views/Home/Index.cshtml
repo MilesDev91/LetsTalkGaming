@@ -2,7 +2,25 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="forums-section"></div>
+<!--    Banner     -->
+<section id="banner">
+    <div class="banner-sides">
+        <a href="..\..\Content\Images\MainBanner.png" target="_blank" class="main-banner">
+            <img src="..\..\Content\Images\MainBanner.png" alt="Main Banner High Noon" />
+        </a>
+    </div>
+</section>
+
+<!--   Forum Titles     -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+
+        </div>
+    </div>
+</section>
+
+
 
 @section scripts
 {
@@ -10,8 +28,8 @@
         $(document).ready(function () {
             $.get("/api/forums", function (data) {
                 $.each(data, function (key, forum) {
-                    $(".forums-section").append(
-                        "<div class='forum'>" + forum.Title + "</div>"
+                    $(".row").append(
+                        "<a href='/forums/forum/" + forum.Id + "' class='forum col-sm-4'>" + forum.Title + "</a>"
                     );
                 });
             });

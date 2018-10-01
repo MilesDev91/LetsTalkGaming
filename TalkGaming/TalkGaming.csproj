@@ -217,6 +217,7 @@
     <Compile Include="Controllers\ForumsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Dtos\ForumDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,16 +238,26 @@
     <Compile Include="Migrations\201810010610197_RenameForums.Designer.cs">
       <DependentUpon>201810010610197_RenameForums.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810090633117_RemoveConstraints.cs" />
+    <Compile Include="Migrations\201810090633117_RemoveConstraints.Designer.cs">
+      <DependentUpon>201810090633117_RemoveConstraints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810090657325_AddBackForeignKeysToModelsAndDb.cs" />
+    <Compile Include="Migrations\201810090657325_AddBackForeignKeysToModelsAndDb.Designer.cs">
+      <DependentUpon>201810090657325_AddBackForeignKeysToModelsAndDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Posts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ForumViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\PostFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -307,10 +318,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Forums\List.cshtml" />
+    <Content Include="Views\Forums\Forum.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Posts\NewPost.cshtml" />
+    <Content Include="Views\Shared\Forum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Forums\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -337,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810010610197_RenameForums.resx">
       <DependentUpon>201810010610197_RenameForums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810090633117_RemoveConstraints.resx">
+      <DependentUpon>201810090633117_RemoveConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810090657325_AddBackForeignKeysToModelsAndDb.resx">
+      <DependentUpon>201810090657325_AddBackForeignKeysToModelsAndDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
