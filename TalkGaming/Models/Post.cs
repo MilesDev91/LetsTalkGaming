@@ -20,7 +20,6 @@ namespace TalkGaming.Models
         [StringLength(10000)]
         public string Content { get; set; }
         
-        [Required]
         public List<Comment> Comments { get; set; }
 
         [Required]

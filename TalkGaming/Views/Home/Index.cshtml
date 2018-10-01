@@ -1,3 +1,20 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
+<div class="forums-section"></div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $.get("/api/forums", function (data) {
+                $.each(data, function (key, forum) {
+                    $(".forums-section").append(
+                        "<div class='forum'>" + forum.Title + "</div>"
+                    );
+                });
+            });
+        });
+    </script>
+}
