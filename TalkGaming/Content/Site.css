@@ -5,7 +5,9 @@
     --dark-bg: #454545;
     --text: #faef27;
     --highlights: #48c752;
-    --border: #cbcbcb
+    --border: #cbcbcb;
+    --post: #682b2b;
+    font-size: large;
 }
 /* ----------------------------- */
 
@@ -61,6 +63,19 @@ a > img {
     border-bottom: 2px solid var(--highlights)
 }
 
+#overrides .navbar {
+    font-size: 1rem;
+}
+
+#overrides .navbar-brand {
+    font-size: 1.2rem;
+}
+
+#overrides .row {
+    overflow: hidden;
+    margin: 0;
+}
+
 /* -------------Body-------------- */
 
 /* Banner */
@@ -103,6 +118,7 @@ a > img {
     color: var(--text);
     border: 1px solid var(--border);
     text-align: center;
+    font-size: 1rem;
     padding: 5px 0;
 }
 
@@ -119,11 +135,72 @@ a > img {
     margin-bottom: 10px;
 }
 
-/* Post Page */
+.table-headers {
+    background-color: #572525;
+    color: #f5ee78;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    font-size: 1.2rem;
+    height: 32px;
+}
 
+.table-header-title {
+    text-align: left;
+    padding-left: 15px !important;
+}
+
+.table-header {
+    border-right: 1px solid black;
+    margin-left: -5px;
+    height: 100%;
+}
+
+.table-header-last {
+    text-align: start;
+    margin-left: -5px;
+}
+
+.table-title-row {
+    height: 30px;
+    max-height: 30px;
+}
+
+.table-content-row {
+    height: 30px;
+    max-height: 30px;
+    border-bottom: 1px solid black;
+}
+
+.post {
+    background-color: var(--post);
+    color: var(--text);
+}
+
+.forum-post-title {
+    text-align: start;
+    padding-left: 15px !important;
+    padding-top: 5px;
+    font-size: 1rem;
+}
+
+.forum-post-content {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: start;
+    padding-left: 15px !important;
+    padding-top: 7px;
+    padding-bottom: 5px;
+    font-size: .8rem;
+    height: 100%;
+}
+
+/* New Post Page */
 .newpost-title {
     color: var(--text);
     padding: 0px 20px;
+}
+
+.newpost-content-box {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .form-group {
@@ -164,6 +241,18 @@ input[type=text] {
     background-color: var(--highlights);
     margin-bottom: 10px;
     margin-left: 20px;
+}
+
+/* Post Details Page */
+.post-details {
+    background-color: var(--post);
+    color: var(--text);
+    padding: 10px 25px;
+}
+
+.post-content {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px 0;
 }
 
 /* -------------Footer------------ */

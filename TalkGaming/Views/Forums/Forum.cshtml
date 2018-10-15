@@ -3,21 +3,46 @@
     ViewBag.Title = "Forum";
 }
 
-<h2 class="forum-title">@Model.Title</h2>
-<div style="text-align: center">
-    <button class="newpost-button">@Html.ActionLink("New Post", "NewPost", "Posts", new { param1 = Model.Title } , null)</button>
+<!-- Forum Title / New Post Button -->
+<section>
+    <h2 class="forum-title">@Model.Title</h2>
+    <div style="text-align: center">
+        <button class="newpost-button">@Html.ActionLink("New Post", "NewPost", "Posts", new { param1 = Model.Title }, null)</button>
+    </div>
+</section>
+<!-- Posts -->
+<section>
     @if (Model.Posts != null)
     {
-        foreach(var post in Model.Posts)
-        { 
+            <div class="row table-headers">
+                <div class="col-md-6 table-header-title">Title</div>
+                <div class="col-md-3 table-header"></div>
+                <div class="col-md-3 table-header-last">Latest Reply</div>
+            </div>
+        foreach (var post in Model.Posts)
+        {
             <div class="post">
-                <div class="post-title">
-                    @post.Title
+                <div class="row table-title-row">
+                    <div class="forum-post-title col-md-6">
+                        @Html.ActionLink(post.Title, "ViewPost", "Posts", new { id = post.Id }, null)
+                    </div>
+                    <div class="col-md-3 table-header">
+                        <!-- # Replies Go Here -->
+                    </div>
+                    <div class="col-md-3">
+                        <!-- Time since latest reply goes here -->
+                    </div>
                 </div>
-                <div class="post-content">
-                    @post.Content
+                <div class="row table-content-row">
+                    <div class="forum-post-content col-md-6">
+                        @post.Content
+                    </div>
+                    <div class="col-md-3 table-header">
+                        <!-- #Views might go here -->
+                    </div>
+                    <div class="col-md-3"></div>
                 </div>
             </div>
         }
     }
-</div>
+</section>

@@ -28,6 +28,16 @@ namespace TalkGaming.Controllers
             return View();
         }
 
+        [Route("Posts/ViewPost/{id}")]
+        public ActionResult ViewPost(int id)
+        {
+            var post = _context.Posts.Single(m => m.Id == id);
+            if (post == null)
+                return HttpNotFound();
+
+            return View("ViewPost", post);
+        }
+
         public ActionResult NewPost(string param1)
         {
             var forumTitle = param1;
@@ -43,7 +53,6 @@ namespace TalkGaming.Controllers
 
         public ActionResult Save(Posts post)
         {
-
             var forumTitle = _context.Forums.Single(m => m.Id == post.Forum_Id).Title;
             if (!ModelState.IsValid)
             {
