@@ -21,7 +21,27 @@ namespace TalkGaming.Models
         [StringLength(10000)]
         public string Content { get; set; }
 
-        public List<Comments> Comments { get; set; }
+        private List<Comments> Comments { get; set; }
+        public List<Comments> _Comments
+        {
+            get
+            {
+                var _context = new ApplicationDbContext();
+                //Get list of comments from db and assign
+                var DbComments = _context.Comments.Where(m => m.Post_Id == this.Id).ToList();
+                if (DbComments.Count == 0)
+                {
+                    Comments = new List<Comments>();
+                }
+                else
+                {
+                    Comments = DbComments;
+                }
+                _context.Dispose();
+                return Comments;
+            }
+            set { Comments = value; }
+        }
 
         [Required]
         public DateTime TimeCreated { get; set; }

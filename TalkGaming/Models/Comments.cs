@@ -13,10 +13,6 @@ namespace TalkGaming.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(255)]
-        public string Title { get; set; }
-
-        [Required]
         [StringLength(10000)]
         public string Content { get; set; }
 

@@ -1,0 +1,29 @@
+﻿@model TalkGaming.ViewModels.PostViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<!-- Post Details Section -->
+<section id="post-functions">
+    <div class="post-function-buttons">
+        <button class="post-function-button">@Html.ActionLink("Comment", "NewComment", "Posts", new { postId = Model.Id }, null)</button>
+    </div>
+</section>
+<section id="post-details">
+    <div class="post-details-title">
+        <h2>@Model.Title</h2>
+    </div>
+    <div class="post-details-content">
+        <h4>@Model.Content</h4>
+    </div>
+</section>
+<section id="comments-section">
+    @if (Model.Comments != null)
+    {
+        foreach (var comment in Model.Comments)
+        {
+            <h5 class="comment">@comment.Content</h5>
+        }
+    }
+
+</section>

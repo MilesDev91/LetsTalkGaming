@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using TalkGaming.Models;
 using TalkGaming.ViewModels;
-
 namespace TalkGaming.Controllers
 {
     public class PostsController : Controller
@@ -28,37 +28,45 @@ namespace TalkGaming.Controllers
             return View();
         }
 
-        [Route("Posts/ViewPost/{id}")]
-        public ActionResult ViewPost(int id)
+        [Route("Posts/ViewPostDetails/{id}")]
+        public ActionResult ViewPostDetails(int id)
         {
             var post = _context.Posts.Single(m => m.Id == id);
             if (post == null)
                 return HttpNotFound();
+            var viewModel = new PostViewModel
+            {
+                Title = post.Title,
+                Id = id,
+                Content = post.Content,
+                Comments = post._Comments
+            };
 
-            return View("ViewPost", post);
+            return View("ViewPostDetails", viewModel);
         }
+
+        
 
         public ActionResult NewPost(string param1)
         {
             var forumTitle = param1;
             var forumId = _context.Forums.Single(m => m.Title == forumTitle).Id;
             var viewModel = new PostFormViewModel {
-                ForumName = forumTitle,
-                Post = new Posts()
+                ForumName = forumTitle
             };
-            viewModel.Post.Forum_Id = forumId;
+            viewModel.Forum_Id = forumId;
 
             return View("NewPost", viewModel);
         }
 
-        public ActionResult Save(Posts post)
+        public ActionResult SavePost(Posts post)
         {
             var forumTitle = _context.Forums.Single(m => m.Id == post.Forum_Id).Title;
+            _context.Posts.Attach(post);
             if (!ModelState.IsValid)
             {
-                var viewModel = new PostFormViewModel
+                var viewModel = new PostFormViewModel(post)
                 {
-                    Post = post,
                     ForumName = forumTitle
                 };
 
@@ -91,6 +99,55 @@ namespace TalkGaming.Controllers
             return View("Forum", forumViewModel);
             
 
+        }
+
+        public ActionResult NewComment(int postId)
+        {
+            var viewModel = new CommentFormViewModel
+            {
+                PostId = postId,
+                Comment = new Comments()
+            };
+            return View("NewComment", viewModel);
+        }
+
+        public ActionResult SaveComment(Comments comment)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CommentFormViewModel
+                {
+                    Comment = comment,
+                    PostId = comment.Post_Id
+                };
+                return View("NewComment", viewModel);
+            }
+            Posts post = _context.Posts.SingleOrDefault(m => m.Id == comment.Post_Id);
+            // Checks if comment is new and adds if so
+            if (comment.Id == 0)
+            {
+                comment.TimeCreated = DateTime.Now;
+                post._Comments.Add(comment);
+                _context.Comments.Add(comment);
+            }
+            // Else edits
+            else
+            {
+                var commentInDb = _context.Comments.Single(m => m.Id == comment.Id);
+                commentInDb.Content = comment.Content;
+            }
+
+            _context.SaveChanges();
+
+            // Redirects to post
+            var postViewModel = new PostViewModel
+            {
+                Title = post.Title,
+                Id = post.Id,
+                Content = post.Content,
+                Comments = post._Comments
+            };
+            return View("ViewPostDetails", postViewModel);
         }
     }
 }

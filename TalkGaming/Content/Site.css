@@ -3,7 +3,7 @@
 :root {
     --darker-bg: #221d28;
     --dark-bg: #454545;
-    --text: #faef27;
+    --text: #e4de78;
     --highlights: #48c752;
     --border: #cbcbcb;
     --post: #682b2b;
@@ -12,7 +12,7 @@
 /* ----------------------------- */
 
 body {
-    font-family: fantasy, Arial, Helvetica, sans-serif !important;
+    font-family: Verdana !important;
     padding-top: 50px;
     background: url(Images/SiteBackground.jpg) repeat 0 0;
     background-size: cover;
@@ -184,7 +184,6 @@ a > img {
 }
 
 .forum-post-content {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: start;
     padding-left: 15px !important;
     padding-top: 7px;
@@ -200,7 +199,6 @@ a > img {
 }
 
 .newpost-content-box {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .form-group {
@@ -244,15 +242,52 @@ input[type=text] {
 }
 
 /* Post Details Page */
-.post-details {
+#post-details {
     background-color: var(--post);
     color: var(--text);
-    padding: 10px 25px;
+    padding-bottom: 10px;
 }
 
-.post-content {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding: 10px 0;
+.post-details-title {
+    padding: 0px 25px 5px 25px;
+}
+
+.post-details-title > h2 {
+    margin-top: 0px;
+}
+
+.post-details-content {
+    border: 2px solid var(--border);
+    margin: 5px 25px 0px 25px;
+    padding: 0px 10px;
+    border-radius: 12px;
+}
+
+#comments-section {
+    background-color: var(--darker-bg);
+    color: var(--text);
+}
+
+.comment {
+    padding: 20px 25px 10px 25px;
+    margin: 0px;
+}
+
+#post-functions {
+    background-color: var(--post);
+    padding-top: 10px;
+}
+
+.post-function-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 25px;
+}
+
+.post-function-button {
+    color: var(--text);
+    border-radius: 10px;
+    background-color: var(--highlights)
 }
 
 /* -------------Footer------------ */

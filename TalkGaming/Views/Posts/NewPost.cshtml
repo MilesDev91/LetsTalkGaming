@@ -5,23 +5,22 @@
 
 <h2 class="newpost-title">New Post</h2>
 
-@using (Html.BeginForm("Save", "Posts", new { forumTitle = Model.ForumName }, FormMethod.Post, null))
+@using (Html.BeginForm("SavePost", "Posts", new { forumTitle = Model.ForumName }))
 {
     @Html.ValidationSummary(true, "Please fix your form below.")
     <div class="form-group">
-        @Html.LabelFor(m => m.Post.Title)
-        @Html.TextBoxFor(m => m.Post.Title, new { @class = "form-control"})
-        @Html.ValidationMessageFor(m => m.Post.Title)
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Title)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Post.Content)
-        @Html.TextAreaFor(m => m.Post.Content, new { @class = "form-control newpost-content-box"})
-        @Html.ValidationMessageFor(m => m.Post.Content)
+        @Html.LabelFor(m => m.Content)
+        @Html.TextAreaFor(m => m.Content, new { @class = "form-control newpost-content-box"})
+        @Html.ValidationMessageFor(m => m.Content)
     </div>
 
-    @Html.HiddenFor(m => m.Post.Forum_Id)
-    @Html.HiddenFor(m => m.Post.Id)
-    @Html.HiddenFor(m => m.Post.TimeCreated)
+    @Html.HiddenFor(m => m.Forum_Id)
+    @Html.HiddenFor(m => m.Id)
     <button type="submit" class="newpost-button-save">Save</button>
 }
 

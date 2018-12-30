@@ -8,13 +8,6 @@ namespace TalkGaming.Models
 {
     public class Forum
     {
-        private ApplicationDbContext _context;
-
-        public Forum()
-        {
-            _context = new ApplicationDbContext();
-        }
-
         [Required]
         public int Id { get; set; }
 
@@ -28,12 +21,10 @@ namespace TalkGaming.Models
         {
             get
             {
-                
-                
-                _context = new ApplicationDbContext();
+                var _context = new ApplicationDbContext();
                 //Get list of posts from db and assign
                 var DbPosts = _context.Posts.Where(m => m.Forum_Id == this.Id).ToList();
-                if (DbPosts == null)
+                if (DbPosts.Count == 0)
                 {
                     Posts = new List<Posts>();
                 }
@@ -41,6 +32,7 @@ namespace TalkGaming.Models
                 {
                     Posts = DbPosts;
                 }
+                _context.Dispose();
                 return Posts;
             }
             set { Posts = value; }

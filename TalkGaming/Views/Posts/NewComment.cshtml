@@ -1,0 +1,25 @@
+﻿@model TalkGaming.ViewModels.CommentFormViewModel
+@{
+    ViewBag.Title = "NewComment";
+}
+
+<h2 class="newpost-title">New Comment</h2>
+
+@using (Html.BeginForm("SaveComment", "Posts", FormMethod.Post, null))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Comment.Content)
+        @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control newpost-content-box" })
+        @Html.ValidationMessageFor(m => m.Comment.Content)
+    </div>
+
+    @Html.HiddenFor(m => m.Comment.Post_Id)
+    @Html.HiddenFor(m => m.Comment.Id)
+    @Html.HiddenFor(m => m.Comment.TimeCreated)
+    <button type="submit" class="newpost-button-save">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
